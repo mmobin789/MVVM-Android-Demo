@@ -34,7 +34,6 @@ class CategoryActivity : BaseActivity(), CategoryView {
         womenCategoryFragment = WomenCategoryFragment.newInstance()
         categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel::class.java)
         categoryViewModel.attachUI(this)
-        categoryViewModel.getCategories()
         pager.adapter = CategoryPagerAdapter(
             this,
             supportFragmentManager,
@@ -45,13 +44,16 @@ class CategoryActivity : BaseActivity(), CategoryView {
 
     }
 
+    override fun onCategoryDataReceived(categoriesData: List<CategoryData>) {
+        Toast.makeText(this, "Success 1", Toast.LENGTH_SHORT).show()
+        categoryViewModel.getCategories()
+
+    }
+
     override fun onCategoriesReceived(categories: Categories) {
         Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onCategoryDataReceived(categoriesData: List<CategoryData>) {
-        Toast.makeText(this, "Success 1", Toast.LENGTH_SHORT).show()
-    }
 
     override fun onError() {
         Toast.makeText(this, "Oops An Error!", Toast.LENGTH_SHORT).show()
