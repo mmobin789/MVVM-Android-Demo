@@ -1,33 +1,32 @@
 package com.mercari.ui.categories.adapters
 
+import android.content.Context
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.mercari.R
 import com.mercari.base.BaseFragment
-import com.mercari.ui.categories.all.AllCategoryFragment
-import com.mercari.ui.categories.men.MenCategoryFragment
-import com.mercari.ui.categories.women.WomenCategoryFragment
 
-class CategoryPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class CategoryPagerAdapter(
+    context: Context,
+    fragmentManager: FragmentManager,
+    private val list: List<BaseFragment>
+) : FragmentPagerAdapter(fragmentManager) {
+
+    private val names =
+        listOf(context.getString(R.string.men), context.getString(R.string.all), context.getString(R.string.women))
+
 
     override fun getItem(position: Int): BaseFragment {
-
-        return when (position) {
-            1 -> {
-                AllCategoryFragment.newInstance()
-            }
-            2 -> {
-                WomenCategoryFragment.newInstance()
-            }
-            else -> {
-                MenCategoryFragment.newInstance()
-
-            }
-        }
+        return list[position]
 
     }
 
     override fun getCount(): Int {
         return 3
+    }
+
+    override fun getPageTitle(position: Int): CharSequence {
+        return names[position]
     }
 
 }

@@ -2,6 +2,7 @@ package com.mercari.base.di.modules
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.mercari.BuildConfig
+import com.mercari.api.ApiManager
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -24,4 +25,7 @@ class ObjectModule {
             .client(httpClient)
             .build()
     }
+
+    @Provides
+    fun apiManager() = ApiManager()
 }

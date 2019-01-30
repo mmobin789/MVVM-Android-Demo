@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:background="@color/bg_toolbar"
+                                                   android:orientation="vertical"
+                                                   android:paddingTop="@dimen/moderate"
+                                                   android:paddingBottom="@dimen/moderate">
+
+    <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            android:layout_marginStart="@dimen/large"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_toolbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+            android:id="@+id/tvLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/moderate"
+            android:layout_marginBottom="@dimen/moderate"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textSize="@dimen/text24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivIcon"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <SearchView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp24"
+            android:layout_marginEnd="@dimen/large"
+            android:background="@color/bg_toolbar_search"
+            android:focusable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvLabel"
+            app:layout_constraintTop_toTopOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
