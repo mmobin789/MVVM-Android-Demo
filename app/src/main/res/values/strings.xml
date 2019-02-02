@@ -3,4 +3,6 @@
     <string name="all">All</string>
     <string name="men">Men</string>
     <string name="women">Women</string>
+    <string name="txt_generic_error"> Oops :( tap here to retry</string>
+    <string name="txt_loading"> Loading…</string>
 </resources>
