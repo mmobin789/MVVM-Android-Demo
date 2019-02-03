@@ -9,6 +9,8 @@ import com.mercari.R
 import com.mercari.base.BaseFragment
 import com.mercari.business.Category
 import com.mercari.ui.categories.CategoryActivity
+import com.mercari.ui.categories.all.adapters.AllCategoryAdapter
+import com.mercari.utils.SpaceItemDecoration
 import com.mercari.utils.UIAnimationUtils
 import kotlinx.android.synthetic.main.fragment_all_category.*
 
@@ -16,6 +18,8 @@ import kotlinx.android.synthetic.main.fragment_all_category.*
 class AllCategoryFragment : BaseFragment<Category>() {
 
     private lateinit var categoryActivity: CategoryActivity
+    private lateinit var adapter: AllCategoryAdapter
+    private val list = mutableListOf<Category>()
 
     companion object {
         fun newInstance() = AllCategoryFragment()
@@ -35,9 +39,10 @@ class AllCategoryFragment : BaseFragment<Category>() {
             categoryActivity.loadCategory(1)
         }
 
-
+        adapter = AllCategoryAdapter(list)
+        rv.adapter = adapter
+        rv.addItemDecoration(SpaceItemDecoration(8))
         showLoadingUI(true)
-
         categoryActivity.loadCategory(1)
 
     }
@@ -66,8 +71,12 @@ class AllCategoryFragment : BaseFragment<Category>() {
         showLoadingUI(false)
 
         if (updateSuccess) {
+            list.clear()
+            list.addAll(t!!)
             showErrorUI(false)
-        } else { // update the list adapter
+            adapter.notifyDataSetChanged()
+
+        } else {
             showErrorUI(true)
         }
     }

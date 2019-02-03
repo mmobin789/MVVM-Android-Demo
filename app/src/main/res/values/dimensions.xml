@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="small">4dp</dimen>
     <dimen name="moderate">8dp</dimen>
+    <dimen name="medium">12dp</dimen>
     <dimen name="large">16dp</dimen>
     <dimen name="dp24">24dp</dimen>
+    <dimen name="dp32">32dp</dimen>
     <dimen name="dp48">48dp</dimen>
     <dimen name="text16">16sp</dimen>
     <dimen name="text24">24sp</dimen>

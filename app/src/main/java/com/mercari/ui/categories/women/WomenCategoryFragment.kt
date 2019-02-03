@@ -4,16 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mercari.R
 import com.mercari.base.BaseFragment
 import com.mercari.business.WomenCategory
 import com.mercari.ui.categories.CategoryActivity
+import com.mercari.ui.categories.women.adapters.WomenCategoryAdapter
+import com.mercari.utils.SpaceItemDecoration
 import com.mercari.utils.UIAnimationUtils
 import kotlinx.android.synthetic.main.fragment_women_category.*
 
 class WomenCategoryFragment : BaseFragment<WomenCategory>() {
 
     private lateinit var categoryActivity: CategoryActivity
+    private lateinit var adapter: WomenCategoryAdapter
+    private val list = mutableListOf<WomenCategory>()
 
     companion object {
         fun newInstance() = WomenCategoryFragment()
@@ -25,7 +30,7 @@ class WomenCategoryFragment : BaseFragment<WomenCategory>() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        rv.layoutManager = GridLayoutManager(context, 2)
         categoryActivity = activity as CategoryActivity
 
         tvError.setOnClickListener {
@@ -33,11 +38,11 @@ class WomenCategoryFragment : BaseFragment<WomenCategory>() {
             showErrorUI(false)
             categoryActivity.loadCategory(2)
         }
-
+        adapter = WomenCategoryAdapter(list)
+        rv.addItemDecoration(SpaceItemDecoration(8))
+        rv.adapter = adapter
         UIAnimationUtils.applyFadeInFadeOut(tvLoading)
-
         showLoadingUI(true)
-
         categoryActivity.loadCategory(2)
 
     }
@@ -64,8 +69,12 @@ class WomenCategoryFragment : BaseFragment<WomenCategory>() {
         showLoadingUI(false)
 
         if (updateSuccess) {
+            list.clear()
+            list.addAll(t!!)
             showErrorUI(false)
-        } else { // update the list adapter
+            adapter.notifyDataSetChanged()
+
+        } else {
             showErrorUI(true)
         }
     }
